@@ -2,17 +2,23 @@
 
 {% block body %}
 
-  <h3>Tell us about your property</h3>
+  <h3 class="text-primary">Tell us about your property</h3>
   <form action="/" method="post">
 
     <input type="text" name="bedroom-count" placeholder="Bedrooms" />
     <input type="text" name="bathroom-count" placeholder="Bathrooms" />
     <input type="text" name="zipcode" placeholder="Zipcode" />
     
+    <div class="mb-3">
+
+      <label class="form-label" for="highlights">Highlights</label>
+      <textarea class="form-control" id="highlights" rows="4"></textarea>
+    </div>
+
     {% for checkbox in checkboxes %}
-      <div>
-        <input type="checkbox" name={{checkbox.name}} name={{checkbox.name}} >
-        <label for={{checkbox.name}}>{{checkbox.name}}</label>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name={{checkbox.name}} name={{checkbox.name}} >
+        <label class="form-check-label" for={{checkbox.name}}>{{checkbox.name}}</label>
       </div>
     {% endfor %}
 

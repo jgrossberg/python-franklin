@@ -1,9 +1,10 @@
-// static/assets/main.scss
-// Source: https://getbootstrap.com/docs/5.1/customize/sass/#importing
+$body-bg: white;
+$body-color: #2F2D2E;
 
-// Custom Bootstrap variables
-$body-bg: white;    // body background is black
-$body-color: #2F2D2E; // body text is white
+$theme-colors: (
+    "primary": #048BA8,
+    "secondary": #99C24D
+);
 
 // Include all of Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap";
