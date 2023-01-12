@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <title>OpenAI Quickstart</title>
+  <link
+    rel="shortcut icon"
+    href="{{ url_for('static', filename='finance.jpeg') }}"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+
+<body>
+  <ul>
+    <li>
+      <a href="/page1.html">Page 1</a>
+    </li>
+
+    <li>
+      <a href="{{ url_for('templates', filename='page2.html') }}">Page 2</a>
+    </li>
+
+    <li>
+      <a href="/page3.html">Page 3</a>
+    </li>
+  </ul>
+
+</body>
