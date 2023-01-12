@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<head>
-  <title>Realmarkably Copy Generator</title>
-  <meta name="description" content="real estate copy generating tool" />
-  <link
-    rel="icon"
-    href="{{ url_for('static', filename='favicon.ico') }}"
-  />
-  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block body %}
+
   <h3>Tell us about your property</h3>
   <form action="/" method="post">
 
@@ -32,5 +24,4 @@
 
   <a href="/contact">Contact</a>
 
-
-</body>
+{% endblock %}

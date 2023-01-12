@@ -1,3 +1,5 @@
+from flask_assets import Environment, Bundle
+
 import os
 
 import openai
@@ -9,6 +11,22 @@ import config
 
 app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+
+
+# https://flask-assets.readthedocs.io/en/latest/#usage
+assets = Environment(app)
+assets.url = app.static_url_path
+
+# Scss files
+scss = Bundle(
+    "assets/main.scss",
+    filters="libsass",
+    output="css/scss-generated.css"
+)
+assets.register("scss_all", scss)
+
+
 
 @app.route("/contact")
 def contact():

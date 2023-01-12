@@ -16,3 +16,8 @@ build/
 .DS_STORE
 
 .env
+static/.webassets-cache/
+static/css/scss-generated.css
+
+node_modules/
+package-lock.json
