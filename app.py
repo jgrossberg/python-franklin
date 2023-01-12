@@ -11,13 +11,16 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def index():
     if request.method == "POST":
         bedroom_count = request.form["bedroomCount"]
-        response = openai.Completion.create(
+        try:
+            response = openai.Completion.create(
             model="text-davinci-002",
             prompt=generate_prompt(bedroom_count),
             max_tokens=500,   
             temperature=0.6,
         )
-        return redirect(url_for("index", result=response.choices[0].text))
+            return redirect(url_for("index", result=response.choices[0].text))
+        except:
+            return redirect(url_for("index", result="error"))
 
     result = request.args.get("result")
     return render_template("index.html", result=result)
