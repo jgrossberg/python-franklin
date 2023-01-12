@@ -10,47 +10,27 @@
 </head>
 
 <body>
-  <a href="/home.html">Home</a>
-  
-  
-  
   <h3>Tell us about your property</h3>
   <form action="/" method="post">
 
-    <input type="text" name="bedroomCount" placeholder="Bedrooms" />
-    <input type="text" name="bathroomCount" placeholder="Bathrooms" />
+    <input type="text" name="bedroom-count" placeholder="Bedrooms" />
+    <input type="text" name="bathroom-count" placeholder="Bathrooms" />
     <input type="text" name="zipcode" placeholder="Zipcode" />
     
-    <div>
+    {% for checkbox in checkboxes %}
+      <div>
+        <input type="checkbox" name={{checkbox.name}} name={{checkbox.name}} >
+        <label for={{checkbox.name}}>{{checkbox.name}}</label>
+      </div>
+    {% endfor %}
 
-      <input type="checkbox" name="garage" name="garage" required>
-      <label for="garage">Garage</label>
-    </div>
-  
-    <div>
-      <input type="checkbox" name="backyard" name="backyard" required>
-      <label for="backyard">Backyard</label>
-    </div>
-    
-    <div>
-      <input type="checkbox" name="pool" name="pool" required>
-      <label for="pool">Pool</label>
-    </div>
-
-    <div>
-      <input type="checkbox" name="garage" name="garage" required>
-      <label for="garage">Garage</label>
-    </div>
-
-    <div>
-
-      <input type="checkbox" name="garage" name="garage" required>
-      <label for="garage">Garage</label>
-    </div>
-
-    <input type="submit" value="Generate names" />
+    <input type="submit" value="Create Copy" />
   </form>
   {% if result %}
   <div class="result">{{ result }}</div>
   {% endif %}
+
+  <a href="/contact">Contact</a>
+
+
 </body>
