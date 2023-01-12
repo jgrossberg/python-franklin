@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+  <title>Realmarkably Copy Generator</title>
+  <meta name="description" content="real estate copy generating tool" />
+  <link
+    rel="icon"
+    href="{{ url_for('static', filename='favicon.ico') }}"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+
+  {% assets "scss_all" %}
+    <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
+  {% endassets %}
+</head>
+
+<body>
+
+  <h1>Realmarkably Property Writer</h1>
+
+
+    {% block body %}
+    {% endblock %}
+</body>
