@@ -1,4 +1,3 @@
-import os
 import config
 
 from flask import Flask, redirect, render_template, request, url_for
@@ -6,8 +5,6 @@ from flask import Flask, redirect, render_template, request, url_for
 import open_ai_service
 
 app = Flask(__name__)
-
-
 
 @app.route("/contact")
 def contact():
@@ -19,8 +16,7 @@ def index():
         bedroom_count = request.form["bedroom-count"]
         bathroom_count = request.form["bathroom-count"]
         try:
-            print(os.getenv("OPEN_API_KEY"))
-            service = open_ai_service.OpenAiService(os.getenv("OPENAI_API_KEY"))
+            service = open_ai_service.OpenAiService()
             response = service.create_completion(generate_prompt(bedroom_count))
             
             return redirect(url_for("index", result=response))

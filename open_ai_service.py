@@ -1,29 +1,21 @@
-import logging
+import logging, os
 
-import requests
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class OpenAiService:
-    def __init__(self, api_key):
-        self.api_key = api_key
-
-        self.url = 'https://api.openai.com/v1/completions'
+    url = 'https://api.openai.com/v1/completions'        
 
     def create_completion(self, prompt):
         try:
-            print('completion with prompt')
-            payload = {
-                'model': 'text-davinci-003',
-                'prompt': prompt,
-                'temperature': .6,
-                'max_tokens': 10
-            }
-
-            headers = {"Authorization": "Bearer " + str(self.api_key)}
-
-            r = requests.post(self.url, json=payload, headers=headers)
-            print(r.text)
-            print(r.json())
-            return r.json()['choices'][0]['text']
+            response = openai.Completion.create(
+            model="text-davinci-002",
+            prompt=prompt,
+            max_tokens=10,   
+            temperature=0.6
+            )
+            return response.choices[0].text
         except:
             logging.exception('')
             print('failed')
