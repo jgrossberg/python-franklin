@@ -2,21 +2,12 @@ import os
 import config
 
 from flask import Flask, redirect, render_template, request, url_for
-from flask_assets import Environment, Bundle
 
 import open_ai_service
 
 app = Flask(__name__)
 
-assets = Environment(app)
-assets.url = app.static_url_path
 
-scss = Bundle(
-    "assets/main.scss",
-    filters="libsass",
-    output="css/scss-generated.css"
-)
-assets.register("scss_all", scss)
 
 @app.route("/contact")
 def contact():
