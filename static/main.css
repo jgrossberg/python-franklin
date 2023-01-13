@@ -57,3 +57,11 @@ input[type="submit"] {
   font-weight: bold;
   margin-top: 40px;
 }
+
+#hero-art {
+  color: #10a37f
+}
+
+#prompt-art {
+  color: #048BA8
+}
