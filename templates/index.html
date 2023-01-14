@@ -1,28 +1,26 @@
 {% extends "base.html" %}
 
 {% block body %}
+  <div class="container">
 
     <h2 class="mb-4 mt-3 text-center" id="prompt-art">Tell us about your property</h2>
     
-    <div class="d-flex justify-content-center gap-5 mb-5" id="franklin-container">
-      <div class="form mr-4" style="width: 400px">
+    <div class="d-lg-flex justify-content-center gap-5 mb-5" id="franklin-container">
+      <div class="form" style="width: 400px">
         <form action="/" method="post">
-      
           <input type="number" class="form-control" name="bedroom-count" placeholder="Bedrooms" />
           <input type="number" class="form-control" name="bathroom-count" placeholder="Bathrooms" />
           <input type="text" class="form-control" name="zipcode" placeholder="Zipcode" />
           
           <div class="form-group mb-4">
-      
             <textarea class="form-control" id="highlights"  name="highlights" rows="3" placeholder = "Additional features"></textarea>
           </div>
-      
-      
+          
           <input class="p-2 d-block mx-auto" type="submit" value="Create Copy" />
         </form>
-  
+        
       </div>
-  
+      
       
       <div class="result" style="width: 400px">
         {% if result %}

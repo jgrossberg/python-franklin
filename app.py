@@ -1,7 +1,6 @@
 import logging
 from flask import Flask, redirect, render_template, request, url_for
 
-import config
 from services import franklin_handler
 
 app = Flask(__name__)
@@ -25,4 +24,4 @@ def index():
             return redirect(url_for("index", result="error"))
 
     result = request.args.get("result")
-    return render_template("index.html", checkboxes=config.checkboxes, result=result)
+    return render_template("index.html", result=result)
