@@ -1,8 +1,8 @@
-import config
-
+import logging
 from flask import Flask, redirect, render_template, request, url_for
 
-import open_ai_service
+import config
+from services import franklin_handler
 
 app = Flask(__name__)
 
@@ -13,25 +13,14 @@ def contact():
 @app.route("/", methods=("GET", "POST"))
 def index():
     if request.method == "POST":
-        bedroom_count = request.form["bedroom-count"]
-        bathroom_count = request.form["bathroom-count"]
         try:
-            service = open_ai_service.OpenAiService()
-            response = service.create_completion(generate_prompt(bedroom_count))
-            
+            response = franklin_handler.handle(request)            
             return redirect(url_for("index", result=response))
         except:
+            logging.exception('')
+            print('failed')
+
             return redirect(url_for("index", result="error"))
 
     result = request.args.get("result")
     return render_template("index.html", checkboxes=config.checkboxes, result=result)
-
-
-def generate_prompt(bedroom_count):
-    return """Write the real estate MLS listing description for the following property: 
-    
-    bedroom count: {}
-
-    """.format(
-        bedroom_count
-    )
