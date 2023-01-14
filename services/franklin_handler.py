@@ -9,7 +9,7 @@ def handle(request):
         response = openai.Completion.create(
             model="text-davinci-002",
             prompt=generate_prompt(request.form),
-            max_tokens=20,
+            max_tokens=100,
             temperature=0.6,
         )
         return response.choices[0].text
