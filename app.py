@@ -6,19 +6,21 @@ from services import franklin_handler
 
 app = Flask(__name__)
 
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
 
 @app.route("/", methods=("GET", "POST"))
 def index():
     if request.method == "POST":
         try:
-            response = franklin_handler.handle(request)            
+            response = franklin_handler.handle(request)
             return redirect(url_for("index", result=response))
         except:
-            logging.exception('')
-            print('failed')
+            logging.exception("")
+            print("failed")
 
             return redirect(url_for("index", result="error"))
 
