@@ -5,14 +5,10 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def handle(request):
     try:
-
-        bedroom_count = request.form["bedroom-count"]
-        bathroom_count = request.form["bathroom-count"]
-
         response = openai.Completion.create(
         model="text-davinci-002",
-        prompt=generate_prompt(bedroom_count),
-        max_tokens=10,   
+        prompt=generate_prompt(request.form),
+        max_tokens=20,   
         temperature=0.6
         )
         return response.choices[0].text
@@ -20,13 +16,11 @@ def handle(request):
         logging.exception('')
         print('failed')
 
-def generate_prompt(bedroom_count):
-    return """Write the real estate MLS listing description for the following property: 
-    
-    bedroom count: {}
-
-    """.format(
-        bedroom_count
+def generate_prompt(form):
+    return """Write a passionate real estate MLS listing description for a {} bedroom {} bathroom house in {}""".format(
+        form['bedroom-count'],
+        form['bathroom-count'],
+        form['zipcode']
     )
 
 
