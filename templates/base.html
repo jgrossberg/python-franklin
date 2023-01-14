@@ -14,10 +14,19 @@
 </head>
 
 <body>
-  <a href="/contact">Contact</a>
-
-  <h1 class="magic font-weight-bold">Realmarkably</h1>
+  <div class="header">
+    <h1 class="magic font-weight-bold">Realmarkably</h1>
+  </div>
   
-  {% block body %}
-  {% endblock %}
+  <div class="body">
+    {% block body %}
+    {% endblock %}
+  </div>
+  
+  <div class="footer pt-5 ps-2">
+    <span>A Rock Your Jaw product</span>
+    <img src="{{ url_for('static', filename='ryj-logo.jpg') }}">
+    <a href="/contact">Contact</a>
+  </div>
+  
 </body>
