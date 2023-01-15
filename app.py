@@ -1,10 +1,8 @@
-import logging
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, render_template, request
 
 from services import franklin_handler
 
 app = Flask(__name__)
-
 
 @app.route("/contact")
 def contact():
@@ -13,15 +11,9 @@ def contact():
 
 @app.route("/", methods=("GET", "POST"))
 def index():
-    if request.method == "POST":
-        try:
-            response = franklin_handler.handle(request)
-            return redirect(url_for("index", result=response))
-        except:
-            logging.exception("")
-            print("failed")
+    if request.method == "GET":
+        return render_template("index.html")
+    elif request.method == "POST":
+        response = franklin_handler.handle(request)
+        return render_template("index.html", result = response)
 
-            return redirect(url_for("index", result="error"))
-
-    result = request.args.get("result")
-    return render_template("index.html", result=result)
