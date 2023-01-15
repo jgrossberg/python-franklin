@@ -25,13 +25,25 @@ def index():
     elif request.method == "POST":
         print("POST Request cookies: {}".format(request.cookies))
 
-        queries = int(request.cookies.get('franklin-queries'))
-        if queries > 2:
-            return redirect('/signup')
+        if is_authorized(request):
+            print("we are authoriezd")
+            return make_response(render_template("index.html", result = franklin_handler.handle(request)))
+
+        else:
+            print("not authorized")
+            queries = int(request.cookies.get('franklin-queries'))
+            if queries > 2:
+                return redirect('/signup')
+
+            response = make_response(render_template("index.html", result = franklin_handler.handle(request)))    
+            response.set_cookie('franklin-queries', str(queries + 1))
+            return response
         
-        response = make_response(render_template("index.html", result = franklin_handler.handle(request)))
-        response.set_cookie('franklin-queries', str(queries + 1))
-        return response
+
+
+def is_authorized(request):
+    print("checking auth: {}".format(request.cookies))
+    return request.cookies.get('franklin-authorized') == "True"
 
 @app.route("/signup/", methods=("GET", "POST"))
 def signup():
@@ -43,12 +55,8 @@ def signup():
         response = signup_handler.handle(request)
         return response
 
-@app.route("/demo", methods=("GET", "POST"))
-def limited_demo():
-    print(request.cookies)
-    if request.method == "GET":
-        return render_template("index.html")
-    elif request.method == "POST":
-        response = franklin_handler.handle(request)
-        return render_template("index.html", result = response)
-
+@app.route("/logout")
+def logout():
+    response = make_response(render_template('index.html'))
+    response.set_cookie("franklin-authorized", "False")
+    return response
