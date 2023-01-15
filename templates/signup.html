@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <div class="container">
+    <h2 class="text-center">You've used all your free attempts!</h2>
+    <p class="text-center">Enter your email for unlimited uses</h2>
+    
+    
+    <div class="d-lg-flex justify-content-center">
+      <form action="/signup/" method="POST">
+        <div class="mb-3">
+          <input type="email" class="form-control" name="email" placeholder="email" style="width: 140px"/>
+        </div>
+        <div class="col-xs-4">
+          <input class="p-2 d-block mx-auto" type="submit" value="Submit" />
+        </div>
+          
+        
+      </form>
+    </div>
+    
+  </div>
+{% endblock %}
