@@ -7,7 +7,7 @@ def handle(request):
         email = request.form["email"]
         print(email)
         resp = make_response(render_template('index.html'))
-        resp.set_cookie("authorized", "True")
+        resp.set_cookie("franklin-authorized", "True")
         return resp
 
     except:
