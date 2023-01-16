@@ -1,5 +1,3 @@
-import uuid
-
 from flask import Flask, render_template, redirect, make_response, request
 
 from services import franklin_handler, signup_handler
