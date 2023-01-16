@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block body %}
-  <div class="container">
+  <div class="container" style="max-width: 800px">
 
     <h2 class="mb-4 mt-3 text-center" id="prompt-art">Tell us about your property</h2>
     
-    <div class="d-lg-flex justify-content-center gap-5 mb-5" id="franklin-container">
-      <div class="form" style="width: 400px">
+    <div class="d-lg-flex justify-content-center gap-4 mb-5" id="franklin-container">
+      <div class="form w-100 mb-3">
         <form action="/" method="post">
           <input type="number" class="form-control" name="bedroom-count" placeholder="Bedrooms" />
           <input type="number" class="form-control" name="bathroom-count" placeholder="Bathrooms" />
           <input type="text" class="form-control" name="zipcode" placeholder="Zipcode" />
           
-          <div class="form-group mb-4">
+          <div class="form-group mb-2">
             <textarea class="form-control" id="highlights"  name="highlights" rows="3" placeholder = "Additional features"></textarea>
           </div>
           
@@ -22,11 +22,11 @@
       </div>
       
       
-      <div class="result" style="width: 400px">
+      <div class="result w-100">
         {% if result %}
-        <textarea class="result-box h-100 w-100">{{ result | trim }}</textarea>
+        <textarea class="result-box h-100 w-100" style="min-height: 350px">{{ result | trim }}</textarea>
         {% else %}
-        <textarea class="result-box h-100 w-100" placeholder= "Text will appear here"></textarea>
+        <textarea class="result-box h-100 w-100" style="min-height: 350px" placeholder= "Text will appear here"></textarea>
         {% endif %}
       </div>
     </div>
